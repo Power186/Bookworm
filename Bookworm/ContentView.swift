@@ -15,16 +15,18 @@ struct ContentView: View {
     var body: some View {
         
         NavigationView {
-            Text("Count: \(books.count)")
-                .navigationBarTitle("Bookworm")
-                .navigationBarItems(trailing: Button(action: {
-                    showingAddScreen.toggle()
-                }) {
-                    Image(systemName: "plus")
+            VStack {
+                Text("Book Count: \(books.count)")
+                    .navigationBarTitle("Bookworm")
+                    .navigationBarItems(trailing: Button(action: {
+                        showingAddScreen.toggle()
+                    }) {
+                        Image(systemName: "plus")
+                    })
+                    .sheet(isPresented: $showingAddScreen, content: {
+                        AddBookView().environment(\.managedObjectContext, moc)
                 })
-                .sheet(isPresented: $showingAddScreen, content: {
-                    AddBookView().environment(\.managedObjectContext, moc)
-            })
+            }
         }
         
     } // body
