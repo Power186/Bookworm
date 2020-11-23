@@ -30,15 +30,11 @@ struct AddBookView: View {
                         Text($0)
                     }
                 }
+                .pickerStyle(MenuPickerStyle())
             }
             
             Section {
-                Picker("Rating", selection: $rating) {
-                    ForEach(0..<6) {
-                        Text("\($0)")
-                    }
-                }
-                
+                RatingView(rating: $rating)
                 TextField("Write a review", text: $review)
             }
             
@@ -50,6 +46,7 @@ struct AddBookView: View {
                     newBook.rating = Int16(rating)
                     newBook.genre = genre
                     newBook.review = review
+//                    print(genre)
                     
                     try? moc.save()
                     presentationMode.wrappedValue.dismiss()
