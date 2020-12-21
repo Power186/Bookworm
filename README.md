@@ -5,3 +5,4 @@ iOS App: Bookworm - keep track of books you read or may read, give them a rating
 * Swift
 * SwiftUI
 * Core Data
+* CloudKit
